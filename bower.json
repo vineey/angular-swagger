@@ -1,6 +1,6 @@
 {
-    "name": "angular-swagger",
-    "main": "angular-swagger.js",
+    "name": "ng-swagger-ui",
+    "main": "ng-swagger-ui.js",
     "version": "0.0.4",
     "dependencies": {
         "angular": "latest",
@@ -21,6 +21,10 @@
     ],
     "license": "MIT",
     "homepage": "https://github.com/vineey/angular-swagger",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/vineey/angular-swagger.git"
+    },
     "ignore": [
         "**/.*",
         "node_modules",

@@ -20,9 +20,9 @@ This requires [AngularJS](https://angularjs.org/). In addition, you will need:
 
 ## Installation
 
-1. Install with bower using `bower install angular-swagger`
+1. Install with bower using `bower install ng-swagger-ui`
 
-2. Include `angular-swagger.js`, which should be located in `bower_components/angular-swagger`
+2. Include `ng-swagger-ui.js`, which should be located in `bower_components/ng-swagger-ui`
 
 3. Include `bootstrap.min.css` (which should be in `bower_components/bootstrap/dist/css`) 
 
