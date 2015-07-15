@@ -111,20 +111,7 @@ angular.module('angular-swagger', [])
 		scope : {
 			api: '='
 		},
-		template: 
-			"<div class='spaced'>\n" +
-			"	<h3 ng-click='api.expanded = !api.expanded' style='cursor:pointer'>\n" +
-			"		<span ng-hide='api.expanded'><i class='fa fa-plus-square'></i>&nbsp;</span>\n" +
-			"		<span ng-show='api.expanded'><i class='fa fa-minus-square'></i>&nbsp;</span>\n" +
-			"		{{api.description}}\n" +
-			"	</h3>\n" +
-
-			"	<div ng-repeat='resource in api.details.apis' ng-show='api.expanded'>\n" +
-			"		<div ng-repeat='operation in resource.operations' style='padding-left: 20px ; margin-top: 20px ;'>\n" +
-			"			<swagger-operation operation='operation' resource='resource' api='api'/>\n" +
-			"		</div>\n" +
-			"	</div>\n" +
-			"</div>",
+		templateUrl: "template/swagger-api.html",
 		link: function (scope, element, attrs) {
 
 		}
@@ -141,42 +128,7 @@ angular.module('angular-swagger', [])
 			operation: '=',
 			api: '='
 		},
-		template: 
-			"<div style='padding-left: 20px ; margin-top: 20px ;'>\n" +
-
-			"	<h4 ng-click='operation.expanded = !operation.expanded' style='cursor:pointer'>\n" +
-			"		<span ng-hide='operation.expanded'><i class='fa fa-plus-square'></i>&nbsp;</span>\n" +
-			"		<span ng-show='operation.expanded'><i class='fa fa-minus-square'></i>&nbsp;</span>\n" +
-
-			"		<span class='label {{getMethodClass(operation.method)}}'>{{operation.method}}</span> \n" +
-			"		<span ng-bind-html='formatPath(resource.path)''></span>\n" +
-			"	</h4>\n" +
-
-			"	<p ng-hide='operation.expanded' style='padding-left: 20px'>\n" +
-			"		{{operation.summary}}\n" +
-			"	</p>\n" +
-
-			"	<div ng-show='operation.expanded' style='padding-left: 20px'>\n" +
-			"		<p ng-bind-html='operation.notes | markdown'>\n" +
-			"		</p>\n" +
-
-			"		<br/>\n" +
-
-			"		<div class='row'>\n" +
-			"			<api-parameter ng-repeat='(paramIndex, param) in operation.parameters | filter:{ paramType: \"path\"}' param='param' param-index='paramIndex' models='api.details.models' ></api-parameter>\n" +
-			"			<api-parameter ng-repeat='(paramIndex, param) in operation.parameters | filter:{ paramType: \"body\"}' param='param' param-index='paramIndex' models='api.details.models' ></api-parameter>\n" +
-			"			<api-parameter ng-repeat='(paramIndex, param) in operation.parameters | filter:{ paramType: \"query\"}' param='param' param-index='paramIndex' models='api.details.models' ></api-parameter>\n" +
-			"		</div>\n" +
-
-			"		<br/>\n" +
-						
-			"		<div class='row'>\n" +
-			"			<div ng-repeat='(responseIndex, response) in operation.responseMessages'>\n" +	
-			"				<api-response response='response' response-index='responseIndex' models='api.details.models'></api-response>\n" +
-			"			</div>\n" +
-			"		</div>\n" +
-			"	</div>\n" +
-			"</div>",
+		templateUrl: "template/swagger-operation.html",
 		link: function (scope, element, attrs) {
 
 			scope.getMethodClass = function(verb) {
@@ -257,23 +209,7 @@ angular.module('angular-swagger', [])
 			responseIndex: '=',
 			models: '='
 		},
-		template: 
-			"<div>\n" +
-			"	<div class='col-sm-2 text-right'>\n" +
-			"		<span class='text-muted' ng-show='responseIndex == 0'>responses:</span>\n" +
-			"	</div>\n" +
-
-			"	<div class='col-sm-10'>\n" +
-			"		<p>\n" +
-			"			<span class='label {{getResponseCodeClass(response.code)}}'>{{response.code}}</span>\n" +
-			"			&nbsp;\n" +
-			"			<strong>{{response.message}}</strong>\n" +
-			"			&nbsp;\n" +
-
-			"			<api-object-badge ng-show='response.responseModel' response-model='response.responseModel' models='models' />\n" +
-			"		</p>\n" +
-			"	</div>\n" +
-			"</div>",
+		templateUrl: "template/api-response.html",
 		link: function (scope, element, attrs) {
 
 			scope.getResponseCodeClass = function(code) {

@@ -1,0 +1,16 @@
+<div>
+    <div class='col-sm-2 text-right'>
+        <span class='text-muted' ng-show='responseIndex == 0'>responses:</span>
+    </div>
+
+    <div class='col-sm-10'>
+        <p>
+            <span class='label {{getResponseCodeClass(response.code)}}'>{{response.code}}</span>
+            &nbsp;
+            <strong>{{response.message}}</strong>
+            &nbsp;
+
+            <api-object-badge ng-show='response.responseModel' response-model='response.responseModel' models='models'/>
+        </p>
+    </div>
+</div>

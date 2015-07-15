@@ -1,3 +1,7 @@
+## Modification
+This fork is intended to make the swagger template customizable by externalizing the directive templates from the main
+js file.
+
 ##angular-swagger
 
 This module provides a simple, minimal interface for reading [Swagger](https://helloreverb.com/developers/swagger) documentation. 

@@ -1,0 +1,13 @@
+<div class='spaced'>
+    <h3 ng-click='api.expanded = !api.expanded' style='cursor:pointer'>
+        <span ng-hide='api.expanded'><i class='fa fa-plus-square'></i>&nbsp;</span>
+        <span ng-show='api.expanded'><i class='fa fa-minus-square'></i>&nbsp;</span>
+        {{api.description}}
+    </h3>
+
+    <div ng-repeat='resource in api.details.apis' ng-show='api.expanded'>
+        <div ng-repeat='operation in resource.operations' style='padding-left: 20px ; margin-top: 20px ;'>
+            <swagger-operation operation='operation' resource='resource' api='api'/>
+        </div>
+    </div>
+</div>,
