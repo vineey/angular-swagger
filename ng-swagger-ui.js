@@ -1,4 +1,4 @@
-angular.module('angular-swagger', [])
+angular.module('ng-swagger-ui', [])
 
 
 .filter('markdown', function() {
