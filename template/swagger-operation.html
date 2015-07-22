@@ -1,10 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div style='padding-left: 20px ; margin-top: 20px ;'>
 
-</body>
-</html>
+    <h4 ng-click='operation.expanded = !operation.expanded' style='cursor:pointer'>
+        <span ng-hide='operation.expanded'><i class='fa fa-plus-square'></i>&nbsp;</span>
+        <span ng-show='operation.expanded'><i class='fa fa-minus-square'></i>&nbsp;</span>
+
+        <span class='label {{getMethodClass(operation.method)}}'>{{operation.method}}</span>
+        <span ng-bind-html='formatPath(resource.path)''></span>
+    </h4>
+
+    <p ng-hide='operation.expanded' style='padding-left: 20px'>
+        {{operation.summary}}
+    </p>
+
+    <div ng-show='operation.expanded' style='padding-left: 20px'>
+        <p ng-bind-html='operation.notes | markdown'>
+        </p>
+
+        <br/>
+
+        <div class='row'>
+            <api-parameter ng-repeat='(paramIndex, param) in operation.parameters | filter:{ paramType: \path\}'
+                           param='param' param-index='paramIndex' models='api.details.models'></api-parameter>
+            <api-parameter ng-repeat='(paramIndex, param) in operation.parameters | filter:{ paramType: \body\}'
+                           param='param' param-index='paramIndex' models='api.details.models'></api-parameter>
+            <api-parameter ng-repeat='(paramIndex, param) in operation.parameters | filter:{ paramType: \query\}'
+                           param='param' param-index='paramIndex' models='api.details.models'></api-parameter>
+        </div>
+
+        <br/>
+
+        <div class='row'>
+            <div ng-repeat='(responseIndex, response) in operation.responseMessages'>
+                <api-response response='response' response-index='responseIndex'
+                              models='api.details.models'></api-response>
+            </div>
+        </div>
+    </div>
+</div>

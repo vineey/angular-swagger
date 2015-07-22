@@ -30,7 +30,7 @@ angular.module('ng-swagger-ui', [])
 
 			var str = "" ;
 
-			_.each(enumArray, function(e, index) {
+			angular.forEach(enumArray, function(e, index) {
 
 				if (index == 0) {
 					str = "" ;
@@ -73,7 +73,8 @@ angular.module('ng-swagger-ui', [])
 	return {
 		restrict: 'E',
 		scope : {
-			url: '@'
+			baseUrl: '@',
+			apiDocUrl: '@'
 		},
 		template:
 			"<div ng-repeat='api in apis'>\n" +
@@ -82,18 +83,18 @@ angular.module('ng-swagger-ui', [])
 			"</div>",
 		link: function(scope, element, attrs) {
 
-			console.log(scope.url) ;
+			console.log(scope.baseUrl) ;
 
 			scope.apis = [] ;
 
-			$http.get(scope.url).success(function(data) {
+			$http.get(scope.apiDocUrl).success(function(data) {
 
 				console.log(data) ;
-				_.each(data.apis, function(api) {
+				angular.forEach(data.apis, function(api) {
 
 					scope.apis.push(api) ;
 
-					$http.get(scope.url + api.path).success(function(data) {
+					$http.get(scope.baseUrl + api.path).success(function(data) {
 						api.details = data ;
 					}) ;
 				}) ;
@@ -235,11 +236,7 @@ angular.module('ng-swagger-ui', [])
 			propertyRef: '=',
 			models: '='
 		},
-		template:
-			"<span>\n" +
-			"	<a class='badge' ng-show='object' ng-click='showModal()'>{{fullObjectName}}</a>\n" +
-			"	<span class='badge' ng-hide='object'>{{fullObjectName}}</span>\n" +
-			"</span>",
+		templateUrl: 'template/api-object-badge.html',
 		link: function (scope, element, attrs) {
 
 			scope.$watch("responseModel", handleChange(), true) ;
